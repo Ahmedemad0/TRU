@@ -1,7 +1,7 @@
 # TRU Task
 
 ## Project Overview
-TRUTask is a native iOS application designed to provide a seamless Product browsing experience. The app follows the MVVM (Model-View-ViewModel) architecture pattern integrated with Clean Architecture principles. The entire project is developed using native Swift, leveraging Combine for reactive programming and URLSession for network communication. No third-party libraries are used in this project, ensuring that it is lightweight and highly maintainable.
+TRUTask is a native iOS application designed to provide a seamless Product browsing experience. The app follows the MVVM (Model-View-ViewModel) architecture pattern integrated with Clean Architecture principles. The entire project is developed using native Swift, leveraging Async/Await and Combine for reactive programming and URLSession for network communication. No third-party libraries are used in this project, ensuring that it is lightweight and highly maintainable.
 
 ## Project Structure
 The project is structured into various folders, each serving a specific purpose and adhering to the principles of Clean Architecture. Here is an overview of the project's file structure and their roles:
