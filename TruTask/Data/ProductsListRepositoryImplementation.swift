@@ -10,6 +10,8 @@ import Foundation
 final class ProductsListRepositoryImplementation:  ProductsListRepositoryProtocol {
     
     @Inject var networking: NetworkDispatcher
+    let context = PersistenceService.shared.persistentContainer
+    
     
     func getProductsList() async throws -> Products {
         do {
@@ -17,10 +19,11 @@ final class ProductsListRepositoryImplementation:  ProductsListRepositoryProtoco
             let request = ProductsListRequest()
             let data = try await self.networking.dispatch(request)
             let products = await self.mapProductsResponseIntoProducts(data)
+            cacheProducts(products)
             return products
             
         } catch {
-            throw error
+            return cachedProducts()
         }
     }
     
@@ -47,5 +50,40 @@ final class ProductsListRepositoryImplementation:  ProductsListRepositoryProtoco
             products.append(mappedProduct)
         }
         return products
+    }
+    
+    private func cachedProducts() -> Products {
+        
+        var products: Products = []
+        if let localProducts: [ProductsItem] = PersistenceService.shared.fetchObjects(ofType: ProductsItem.self) {
+            for product in localProducts {
+                let mappedProduct = Product(
+                    id: Int(product.productId ?? "0") ?? 0,
+                    title: product.title ?? "",
+                    description: product.desc ?? "",
+                    price: product.price ?? "",
+                    category: product.category ?? "",
+                    image: product.image ?? Data()
+                )
+                products.append(mappedProduct)
+            }
+        }
+        return products
+    }
+    
+    private func cacheProducts(_ products: Products) {
+        
+        PersistenceService.shared.deleteAllData()
+        
+        for product in products {
+            let localProduct: ProductsItem = PersistenceService.shared.createObject(ofType: ProductsItem.self)
+            localProduct.productId =  "\(product.id)"
+            localProduct.title = product.title
+            localProduct.desc = product.description
+            localProduct.price = product.price
+            localProduct.category = product.category
+            localProduct.image = product.image
+            PersistenceService.shared.saveContext()
+        }
     }
 }
