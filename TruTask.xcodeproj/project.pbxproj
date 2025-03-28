@@ -14,7 +14,7 @@
 		8B3ECD502D96B72D0058F4EA /* Exceptions for "TruTask" folder in "TruTask" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Info.plist,
+				Core/Info.plist,
 			);
 			target = 8B3ECD3D2D96B72B0058F4EA /* TruTask */;
 		};
@@ -147,7 +147,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4RMMV9J9NG;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = TruTask/Info.plist;
+				INFOPLIST_FILE = TruTask/Core/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
@@ -175,7 +175,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4RMMV9J9NG;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = TruTask/Info.plist;
+				INFOPLIST_FILE = TruTask/Core/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
