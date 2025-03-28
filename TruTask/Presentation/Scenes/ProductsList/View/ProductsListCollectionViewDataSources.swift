@@ -29,6 +29,10 @@ class ProductsListCollectionViewDataSources: NSObject, UICollectionViewDelegate,
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         viewModel.didSelectProduct(indexPath.row)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+       // NOTE: I don't find pagination parameters with that endpoint
+    }
 }
 
 extension ProductsListCollectionViewDataSources: UICollectionViewDelegateFlowLayout {
