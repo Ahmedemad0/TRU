@@ -17,6 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let window = UIWindow(windowScene: windowScene)
         self.window = window
+        setupDependencyContainer()
         let vc = UINavigationController(rootViewController: ProductsListViewController(viewModel: ProductsListViewModel()))
         window.rootViewController = vc
         window.makeKeyAndVisible()
@@ -53,3 +54,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 }
 
+extension SceneDelegate {
+    func setupDependencyContainer() {
+        Container.register(type: NetworkDispatcher.self, {
+            return DefaultNetworkDispatcher()
+        })
+        
+        Container.register(type: ProductsListRepositoryProtocol.self, {
+            return ProductsListRepositoryImplementation()
+        })
+        
+        Container.register(type: ProductsListUseCasesProtocol.self, {
+            return ProductsListUseCases()
+        })
+    }
+}
