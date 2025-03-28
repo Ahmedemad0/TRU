@@ -9,10 +9,11 @@ import Foundation
 import Combine
 
 protocol ProductsListViewModelProtocol {
-    var products: Products { get }
+    var productsPublisher: AnyPublisher<Products, Never> { get }
     var productSelectedPublisher: AnyPublisher<Int, Never> { get }
     var isListPublisher: AnyPublisher<Bool, Never> { get }
     
+    func products() -> Products
     func didSelectProduct(_ index: Int)
     func didChangeListOrGrid()
     func isList() -> Bool
@@ -21,7 +22,12 @@ protocol ProductsListViewModelProtocol {
 
 class ProductsListViewModel: ProductsListViewModelProtocol {
     
-    @Published var products: Products = []
+    @Inject var useCases: ProductsListUseCasesProtocol
+    
+    private let productsSubject = CurrentValueSubject<Products, Never>([])
+    var productsPublisher: AnyPublisher<Products, Never> {
+        return productsSubject.eraseToAnyPublisher()
+    }
     
     private let productSelectedSubject = PassthroughSubject<Int, Never>()
     var productSelectedPublisher: AnyPublisher<Int, Never> {
@@ -34,16 +40,18 @@ class ProductsListViewModel: ProductsListViewModelProtocol {
     }
         
     init() {
-        getProducts()
+        Task {
+            await getProducts()
+        }
     }
 
-    private func getProducts() {
-        products = [
-            Product(id: 0, title: "TITLE 1", description: "Desc 1", price: "123", image: Data()),
-            Product(id: 1, title: "TITLE 2", description: "Desc 2", price: "123", image: Data()),
-            Product(id: 2, title: "TITLE 3", description: "Desc 3", price: "123", image: Data()),
-            Product(id: 3, title: "TITLE 4", description: "Desc 4", price: "123", image: Data()),
-        ]
+    private func getProducts() async {
+        do {
+            let products = try await useCases.getProductsList()
+            productsSubject.send(products)
+        } catch {
+            debugPrint("ERROR: \(error.localizedDescription)")
+        }
     }
     
     func didSelectProduct(_ index: Int) {
@@ -56,5 +64,9 @@ class ProductsListViewModel: ProductsListViewModelProtocol {
 
     func isList() -> Bool {
         isListSubject.value
+    }
+    
+    func products() -> Products {
+        productsSubject.value
     }
 }

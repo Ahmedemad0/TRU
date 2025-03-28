@@ -60,6 +60,7 @@ class ProductsListViewController: UIViewController {
     }
     
     private func subscriptions() {
+        subscribeProductsListViewModel()
         subscribeSelectIndex()
         subscribeIsList()
     }
@@ -82,8 +83,18 @@ class ProductsListViewController: UIViewController {
         .store(in: &cancellables)
     }
     
+    func subscribeProductsListViewModel() {
+        viewModel.productsPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                guard let self else { return }
+                self.collectionView.reloadData()
+            }
+            .store(in: &cancellables)
+    }
+    
     private func navigateIntoDetails(at index: Int) {
-        let productDetailsViewController = ProductDetailsViewController(viewModel: ProductDetailsViewModel(product: viewModel.products[index]))
+        let productDetailsViewController = ProductDetailsViewController(viewModel: ProductDetailsViewModel(product: viewModel.products()[index]))
         navigationController?.pushViewController(productDetailsViewController, animated: true)
     }
 

@@ -17,12 +17,12 @@ class ProductsListCollectionViewDataSources: NSObject, UICollectionViewDelegate,
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        viewModel.products.count
+        viewModel.products().count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeue(indexPath: indexPath) as ProductCollectionViewCell
-        cell.configureCell(viewModel.products[indexPath.row], isList: viewModel.isList())
+        cell.configureCell(viewModel.products()[indexPath.row], isList: viewModel.isList())
         return cell
     }
     
