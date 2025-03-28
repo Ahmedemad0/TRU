@@ -21,13 +21,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Products List" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sxu-YK-KKB">
-                    <rect key="frame" x="142.66666666666666" y="91" width="108" height="21"/>
+                    <rect key="frame" x="142.66666666666666" y="59" width="108" height="21"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1l9-Ji-z4h">
-                    <rect key="frame" x="345" y="85.666666666666671" width="32" height="32"/>
+                    <rect key="frame" x="345" y="53.666666666666657" width="32" height="32"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="32" id="1Yd-li-B2k"/>
                         <constraint firstAttribute="width" constant="32" id="gNg-oi-38n"/>
@@ -40,7 +40,7 @@
                     </connections>
                 </button>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="VGs-Jy-t0t">
-                    <rect key="frame" x="16" y="128" width="361" height="690"/>
+                    <rect key="frame" x="16" y="96" width="361" height="722"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Dun-up-68A">
                         <size key="itemSize" width="128" height="128"/>
@@ -54,7 +54,7 @@
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="VGs-Jy-t0t" secondAttribute="trailing" constant="16" id="6zI-MT-Q2h"/>
-                <constraint firstItem="Sxu-YK-KKB" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="32" id="BiH-7g-KuC"/>
+                <constraint firstItem="Sxu-YK-KKB" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="BiH-7g-KuC"/>
                 <constraint firstItem="VGs-Jy-t0t" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="L7W-DP-7YX"/>
                 <constraint firstItem="VGs-Jy-t0t" firstAttribute="top" secondItem="Sxu-YK-KKB" secondAttribute="bottom" constant="16" id="RJF-JV-zP7"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="VGs-Jy-t0t" secondAttribute="bottom" id="VZs-IP-IZu"/>

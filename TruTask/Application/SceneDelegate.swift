@@ -17,7 +17,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let window = UIWindow(windowScene: windowScene)
         self.window = window
-        window.rootViewController = ProductsListViewController(viewModel: ProductsListViewModel())
+        let vc = UINavigationController(rootViewController: ProductsListViewController(viewModel: ProductsListViewModel()))
+        window.rootViewController = vc
         window.makeKeyAndVisible()
     }
 

@@ -11,6 +11,7 @@ import Combine
 class ProductsListViewController: UIViewController {
 
     // MARK: - Properties
+    
     let viewModel: ProductsListViewModelProtocol
     // custom data source and delegate for the collection view.
     private var dataSources: ProductsListCollectionViewDataSources?
@@ -82,7 +83,8 @@ class ProductsListViewController: UIViewController {
     }
     
     private func navigateIntoDetails(at index: Int) {
-
+        let productDetailsViewController = ProductDetailsViewController(viewModel: ProductDetailsViewModel(product: viewModel.products[index]))
+        navigationController?.pushViewController(productDetailsViewController, animated: true)
     }
 
     // MARK: - Actions
